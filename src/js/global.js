@@ -1,8 +1,26 @@
+var data = [
+    {
+        "name": "BookmarkletJS",
+        "github": "https://github.com/DimidCO/BookmarkletJS",
+        "demo": "/BookmarkletJS"
+    },
+    {
+        "name": "Fake",
+        "github": "https://github.com/DimidCO/Sample",
+        "demo": "/Fake"
+    },
+    {
+        "name": "Sample",
+        "github": "https://github.com/DimidCO/Sample",
+        "demo": "/Sample"
+    }
+];
+
 $(function(){
-    $.getJSON('projects.json', function(data){
+//    $.getJSON('projects.json', function(data){
         for (var i=0;i<data.length;i++) {
             var arrary = data[i];
-            $('.projects').append('<div class="name">'+arrary.name+'</div><div class="github">'+arrary.github+'</div><div class="demo"><a href="'+arrary.demo+'">Demo</a></div>')
+            $('.projects').append('<name>'+arrary.name+'</name><a href="'+arrary.demo+'" target="_blank">Demo</a><github>'+arrary.github+'</github>')
         }
-    });
+//    });
 });

@@ -6,9 +6,35 @@
     color: #fff;
 }
 
-
-
 body {
-    background: url('https://static.dim.codes/src/img/background.png') no-repeat center center fixed;
-    background-size: cover;
+    background: #eee;
+    padding-top: 50px;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: flex;
+}
+
+.left {
+    width: 20%;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.left img {
+    width: 90%;
+    display: block;
+    margin: 0px auto;
+}
+
+.right {
+    width: 80%;
+    margin-top: 10px;
+    display: inline-block;
 }
