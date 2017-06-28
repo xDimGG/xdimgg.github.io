@@ -21,3 +21,10 @@ h1 {
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }
+
+.social a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 12px;
+}
