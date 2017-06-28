@@ -22,9 +22,12 @@ h1 {
   transform: translate(-50%,-50%);
 }
 
+.social {
+  font-size: 12px;
+}
+
 .social a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-    font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
 }
