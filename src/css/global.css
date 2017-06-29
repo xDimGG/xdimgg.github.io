@@ -9,24 +9,21 @@ body {
   background: url('https://unsplash.it/1920/1080/?random&blur') no-repeat center center fixed;
   -ms-background-size: cover;
   background-size: cover;
+  color: #fff;
+  font: 100px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-h1 {
-  color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 100px;
-  position: fixed;
+.center {
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
-}
-
-.social {
-  font-size: 12px;
+  position: fixed;
+  text-align: center;
 }
 
 .social a {
+  font-size: 12px;
   color: #fff;
   text-decoration: none;
   padding: 10px;
