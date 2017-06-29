@@ -22,6 +22,10 @@ body {
   text-align: center;
 }
 
+.social {
+  font-size: 0;
+}
+
 .social a {
   font-size: 12px;
   color: #fff;
