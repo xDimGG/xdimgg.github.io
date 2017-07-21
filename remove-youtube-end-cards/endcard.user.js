@@ -8,6 +8,7 @@
 // @updateURL    https://dim.dimid.co/remove-youtube-end-cards/endcard.user.js
 // @run-at       document-start
 // @grant        GM_addStyle
+// @updateURL    https://dim.codes/remove-youtube-end-cards/endcard.user.js
 // ==/UserScript==
 
 GM_addStyle('.remove_card{border:1px solid #CCC;background-color:#FAFAFA;color:#737373;cursor:pointer;font-family:"YouTube Noto",Roboto,arial,sans-serif;padding:4px 8px;border-radius:2px;margin-left:10px;vertical-align:middle;font-size:12px;}');
