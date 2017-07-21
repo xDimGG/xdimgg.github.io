@@ -1,17 +1,30 @@
 // ==UserScript==
-// @name         Remove YouTube End Cards
-// @version      1
-// @description  Removes the end cards of YouTube videos
 // @author       Dim
-// @match        *://www.youtube.com/*
-// @require      https://code.jquery.com/jquery-3.2.1.min.js
-// @updateURL    https://dim.dimid.co/remove-youtube-end-cards/endcard.user.js
+// @description  Removes the end cards of YouTube videos
+// @name         Remove YouTube End Cards
+// @namespace    https://dim.codes
+// @version      1.1
+// @icon         https://www.youtube.com/yts/img/favicon_96-vfldSA3ca.png
+// @match        https://www.youtube.com/watch*
+// @updateURL    https://dim.codes/remove-youtube-end-cards/endcard.user.js
 // @run-at       document-start
 // @grant        GM_addStyle
-// @updateURL    https://dim.codes/remove-youtube-end-cards/endcard.user.js
+// @grant        unsafeWindow
 // ==/UserScript==
 
-GM_addStyle('.remove_card{border:1px solid #CCC;background-color:#FAFAFA;color:#737373;cursor:pointer;font-family:"YouTube Noto",Roboto,arial,sans-serif;padding:4px 8px;border-radius:2px;margin-left:10px;vertical-align:middle;font-size:12px;}');
+GM_addStyle('#remove_card{border:1px solid #CCC;background-color:#FAFAFA;color:#737373;cursor:pointer;padding:4px 8px;border-radius:2px;margin-left:10px;vertical-align:middle;font-size:12px}');
+
+Element.prototype.remove = function() {
+	this.parentElement.removeChild(this);
+};
+
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+	for(var i = this.length - 1; i >= 0; i--) {
+		if(this[i] && this[i].parentElement) {
+			this[i].parentElement.removeChild(this[i]);
+		}
+	}
+};
 
 function disableSPF() {
 	if (unsafeWindow._spf_state && unsafeWindow._spf_state.config) {
@@ -21,15 +34,14 @@ function disableSPF() {
 	setTimeout(disableSPF, 50);
 }
 
-function RemoveCard() {
-    $("#watch7-subscription-container").append($('<span class=remove_card>Remove End Cards</span>'));
-    $(".remove_card").click(function() {
-        $(".ytp-ce-element").remove();
-        $(".remove_card").text("End Cards Removed :\)");
-    });
+function removeCard() {
+  document.getElementById('watch7-subscription-container').innerHTML += '<span id=remove_card>Remove End Cards</span>';
+  document.getElementById('remove_card').onclick = function() {
+    document.getElementsByClassName('ytp-ce-element').remove();
+    document.getElementById('remove_card').innerHTML = 'End Cards Removed';
+  };
 }
 
-$(function() {
-	RemoveCard();
-    disableSPF();
-});
+disableSPF();
+
+document.addEventListener('DOMContentLoaded', removeCard);
