@@ -4,7 +4,7 @@ h1 {
 }
 
 body {
-  background: url('https://unsplash.it/1920/1080/?random&blur') no-repeat center center fixed;
+  background: url('https://static.dim.codes/src/img/background.png') no-repeat center center fixed;
   -ms-background-size: cover;
   background-size: cover;
   -webkit-user-select: none;
