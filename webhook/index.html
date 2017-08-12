@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Discord WebHook</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+  <style media="screen">
+    #submit, h2 {
+      text-align: center;
+    }
+    textarea, input {
+      margin: 10px 0;
+    }
+    textarea {
+      min-height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 class="subtitle is-3 has-text-centered">Discord WebHook Generator</h1>
+  </header>
+  <main class="main container">
+    <section class="section">
+      <div class="columns">
+        <div class="column is-6">
+          <h2 class="subtitle is-4">WebHook Info</h2>
+          <input type="text" class="input" id="url" placeholder="WebHook URL">
+          <input type="text" class="input" id="webhook_username" placeholder="WebHook Username">
+          <input type="text" class="input" id="webhook_avatar" placeholder="WebHook Avatar URL">
+        </div>
+        <div class="column is-6">
+          <h2 class="subtitle is-4">Message Info</h2>
+          <input type="title" class="input" id="title" placeholder="Title">
+          <textarea class="input" id="message" placeholder="Content" maxlength="2048"></textarea>
+          <input type="text" class="input" id="color" placeholder="Hex Color">
+          <input type="text" class="input" id="author_username" placeholder="Author Username">
+          <input type="text" class="input" id="author_avatar" placeholder="Author Avatar URL">
+        </div>
+      </div>
+      <div id="submit">
+        <div class="button is-primary">Send WebHook</div>
+      </div>
+    </section>
+  </main>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('textarea, input').each(function(el) {
+        $(this).val(localStorage.getItem($(this).attr('id')));
+      });
+    });
+    window.onbeforeunload = function() {
+      $('textarea, input').each(function() {
+        localStorage.setItem($(this).attr('id'), $(this).val());
+      });
+    };
+    $('#submit > .button').on('click', send);
+    function send() {
+      var data = {
+        username: $('#webhook_username').val(),
+        icon_url: $('#webhook_avatar').val(),
+		    attachments: [{
+          author_icon: $('#author_avatar').val(),
+          author_name: $('#author_username').val(),
+          color: $('#color').val(),
+          fields: [{
+            title: $('#title').val(),
+            value: $('#message').val()
+          }]
+        }]
+      };
+      $.ajax({
+        type: 'POST',
+        url: $('#url').val() + '/slack',
+        crossDomain: true,
+        data: JSON.stringify(data),
+        success: function(a, b, c) {
+          alert('WebHook Sent');
+          console.log(a, b, c);
+        },
+        error: function (a, b, c) {
+          alert('WebHook Error');
+          console.log(a, b, c);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
