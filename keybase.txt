@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/dimgg
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://dim.codes
+  * I am dimgg (https://keybase.io/dimgg) on keybase.
+  * I have a public key with fingerprint 3C02 F675 35AD A33E C17B  0732 D83F 440E B1DB 0FCA
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101f5c957e846c8f65c3187ad2848385b7106480fdc5a15b276d54ab7c01230a4090a",
+      "fingerprint": "3c02f67535ada33ec17b0732d83f440eb1db0fca",
+      "host": "keybase.io",
+      "key_id": "d83f440eb1db0fca",
+      "kid": "0101f5c957e846c8f65c3187ad2848385b7106480fdc5a15b276d54ab7c01230a4090a",
+      "uid": "6638b7d1fed20824e14349d2db870019",
+      "username": "dimgg"
+    },
+    "service": {
+      "hostname": "dim.codes",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1503849068,
+  "expire_in": 157680000,
+  "prev": "e945cc1918db68866e46808052365ac92fde9658abd2520d330afff7df85e277",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.73
+Comment: https://keybase.io/crypto
+
+yMImAnicrVJrSBVBGF1To24FRRCUELlQoUjNPmZ39iZkKPawJ2QkFbfdmdnrpt69
+3t177WYWRQallb1LLCh6Er0orCDq9jCINJSSSgp6U1aGVEQZ1qwU/eln82eYb845
+3/kO380hyZwvaXuNcWyG/rQ16c61rVGu6GBnaSVv2CTO+yv5Etp30VJCHTdQYhHe
+zwMBCCbEGlQpkhWMTAViSUCqTkQkIwlBQxWAIiNgEgx1ARqiqhAo64aKgSBKQJeB
+BnQ+izetUJBGwhEr5DJZCQPRVFQoQZ3okkSxoBpAlUSCJFOWATUEYgATe8Ri2/EY
+zJyhO3SCZbMaewT67P0D/599R/vkFEVChkoEkxIRIFGmgizJGhGJgVQABM0DOjQS
+0suo58oqCwb5qiyelWIWpl6q3hh/vydgm4XMWOGI7drYLmXlYtcNO36P5sbDHq6C
+GoHfCgHDChGWIGPEaMSx7BDvFxgSu5YnKUAgIVkDCsri6fKwFaEBy0NAVUGAHa8P
+jTFJqskQY0ETEDEUhBSFygyBABQlBepYE01CNQUi3SAiFAGRWBKmaarERJCKqsp7
+M5WHbN6vMJt6kEk6VjCku9EI5auuJxancEk+rn9qP2+zON/AoX/2renGAK766tyN
+b+P3og/CmwtTa0vyfB9bc5Yset6x41t5k/BqNJ3XZmU2Z9Rffti163Nva1HTd3HO
+m+61L6q+rKp+9CF3U+Ku2Fg3prooZV//9Q8nEaVtYf4Gc/7UiozEjo6ehq/Pcsef
+055x95c+WX9i3dAfeedutbUPbugC7um6WfHTVVxhoX/ayKnqiNudK6bl7V1WwOfW
+FDXurElzho/bNjbzUjIpaE89k7Z7nr6rfuLLo8ffT964ZXXiSPqwWAH+9PrCqCtn
+Wg7mpI+d2X1+f9a4bYMuTkGtJzP39CxtubPygJh9uLg27ZTesiA2n1v8s9vpyG+c
+/q5ZXVO+/9BjqWx2cm/22ey56b8AUV9Ayw==
+=ha8C
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dimgg
+
+==================================================================
