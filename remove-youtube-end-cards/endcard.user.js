@@ -29,29 +29,31 @@ function installUnsafewindowPolyfill() {
 
 function removeCard() {
   setTimeout(function() {
-    var endCardRemover = document.createElement('span');
-    endCardRemover.appendChild(document.createTextNode('Remove End Cards'));
-    endCardRemover.id = 'remove_card';
-    var sub = document.getElementsByTagName('ytd-subscribe-button-renderer')[0];
-    if (sub) {
-        GM_addStyle('#remove_card{margin:auto 4px;font-weight:500;text-transform:uppercase;letter-spacing:.007px;;background-color:hsl(0, 0%, 93.3%);color:hsla(0, 0%, 6.7%, .6);cursor:pointer;padding:10px 16px;border-radius:2px;vertical-align:middle;font-size:1.4rem}');
-        sub.insertBefore(endCardRemover, sub.firstChild);
+    if (document.getElementsByTagName('ytd-subscribe-button-renderer').length || document.querySelector('ytd-button-renderer.ytd-video-secondary-info-renderer') || document.getElementById('watch7-subscription-container')) {
+      var endCardRemover = document.createElement('span');
+      endCardRemover.appendChild(document.createTextNode('Remove End Cards'));
+      endCardRemover.id = 'remove_card';
+      var sub = document.getElementsByTagName('ytd-subscribe-button-renderer')[0] ? document.getElementsByTagName('ytd-subscribe-button-renderer')[0] : document.querySelector('ytd-button-renderer.ytd-video-secondary-info-renderer');
+      if (sub) {
+          GM_addStyle('#remove_card{margin:auto 4px;font-weight:500;text-transform:uppercase;letter-spacing:.007px;;background-color:hsl(0, 0%, 93.3%);color:hsla(0, 0%, 6.7%, .6);cursor:pointer;padding:10px 16px;border-radius:2px;vertical-align:middle;font-size:1.4rem}');
+          sub.insertBefore(endCardRemover, sub.firstChild);
+      } else {
+          GM_addStyle('#remove_card{border:1px solid #CCC;background-color:#FAFAFA;color:#737373;cursor:pointer;padding:4px 8px;border-radius:2px;margin-left:10px;vertical-align:middle;font-size:12px}');
+          document.getElementById('watch7-subscription-container').appendChild(endCardRemover);
+      }
+      endCardRemover.onclick = function() {
+          var cards = document.getElementsByClassName('ytp-ce-element');
+          while(cards[0]) {
+              cards[0].parentNode.removeChild(cards[0]);
+          }
+          endCardRemover.innerText = 'End Cards Removed';
+      };
     } else {
-        GM_addStyle('#remove_card{border:1px solid #CCC;background-color:#FAFAFA;color:#737373;cursor:pointer;padding:4px 8px;border-radius:2px;margin-left:10px;vertical-align:middle;font-size:12px}');
-        document.getElementById('watch7-subscription-container').appendChild(endCardRemover);
+      removeCard();
     }
-    endCardRemover.onclick = function() {
-        var cards = document.getElementsByClassName('ytp-ce-element');
-        while(cards[0]) {
-            cards[0].parentNode.removeChild(cards[0]);
-        }
-        endCardRemover.innerText = 'End Cards Removed';
-    };
-  }, 1000);
+  }, 100);
 }
 
 disableSPF();
 installUnsafewindowPolyfill();
-if (location.pathname === '/watch') {
-  document.addEventListener('DOMContentLoaded', removeCard);
-}
+if (location.pathname === '/watch') document.addEventListener('DOMContentLoaded', removeCard);
