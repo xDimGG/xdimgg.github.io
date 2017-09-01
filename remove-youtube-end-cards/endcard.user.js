@@ -3,7 +3,7 @@
 // @description  Removes the end cards of YouTube videos
 // @name         Remove YouTube End Cards
 // @namespace    https://dim.codes
-// @version      1.2.1
+// @version      1.2.2
 // @icon         https://www.youtube.com/yts/img/favicon_96-vfldSA3ca.png
 // @match        https://www.youtube.com/*
 // @updateURL    https://dim.codes/remove-youtube-end-cards/endcard.user.js
