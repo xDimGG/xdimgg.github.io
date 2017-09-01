@@ -29,7 +29,7 @@ function installUnsafewindowPolyfill() {
 
 function removeCard() {
   setTimeout(function() {
-    if (document.getElementsByTagName('ytd-subscribe-button-renderer').length || document.querySelector('ytd-button-renderer.ytd-video-secondary-info-renderer') || document.getElementById('watch7-subscription-container')) {
+    if (document.getElementsByTagName('ytd-subscribe-button-renderer').length || document.querySelector('ytd-button-renderer.ytd-video-secondary-info-renderer') || document.getElementById('watch7-subscription-container') && !document.getElementById('remove_card')) {
       var endCardRemover = document.createElement('span');
       endCardRemover.appendChild(document.createTextNode('Remove End Cards'));
       endCardRemover.id = 'remove_card';
