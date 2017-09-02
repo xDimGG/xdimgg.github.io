@@ -3,7 +3,7 @@
 // @description  Removes the end cards of YouTube videos
 // @name         Remove YouTube End Cards
 // @namespace    https://dim.codes
-// @version      1.2.3
+// @version      1.3.0
 // @icon         https://www.youtube.com/yts/img/favicon_96-vfldSA3ca.png
 // @match        https://www.youtube.com/*
 // @updateURL    https://dim.codes/remove-youtube-end-cards/endcard.user.js
@@ -29,7 +29,10 @@ function installUnsafewindowPolyfill() {
 
 function removeCard() {
   setTimeout(function() {
-    if (document.getElementsByTagName('ytd-subscribe-button-renderer').length || document.querySelector('ytd-button-renderer.ytd-video-secondary-info-renderer') || document.getElementById('watch7-subscription-container') && !document.getElementById('remove_card')) {
+    if ((document.getElementsByTagName('ytd-subscribe-button-renderer').length ||
+         document.querySelector('ytd-button-renderer.ytd-video-secondary-info-renderer') ||
+         document.getElementById('watch7-subscription-container')) &&
+         !document.getElementById('remove_card')) {
       var endCardRemover = document.createElement('span');
       endCardRemover.appendChild(document.createTextNode('Remove End Cards'));
       endCardRemover.id = 'remove_card';
