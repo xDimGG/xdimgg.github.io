@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>DateJS</title>
+	<meta property="og:image" content="https://dim.codes/src/img/icon.png">
+	<meta property="og:description" content="An incredibly fast, lightweight, and easy-to-use date library.">
+	<meta property="og:title" content="DateJS">
+	<meta property="og:site_name" content="Dim">
+	<style>
+		body {
+			margin: 0;
+			background: #282C34;
+			color: #FFF;
+			font-family: Arial, sans-serif;
+		}
+		.plainjs {
+			font-size: 16px;
+			text-align: center;
+			display: block;
+			background: rgba(0, 0, 0, 0.2);
+			padding: 5px;
+			box-shadow: inset 0 0 10px #000;
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+		}
+		.plainjs > a > img {
+			vertical-align: middle;
+			height: 18px;
+		}
+		.full-width {
+			width: 100%;
+			background: #282C34;
+			z-index: 10;
+			position: relative;
+			margin-top: 29px;
+		}
+		.container {
+			max-width: 80%;
+			margin: 10px auto;
+		}
+		a {
+			color: #FFA8A8;
+			text-decoration: none;
+		}
+		h1 {
+			padding-top: 0.67rem;
+			margin: 0;
+			text-align: center;
+			font-size: 4rem;
+			text-decoration: underline;
+		}
+		h2 {
+			cursor: pointer;
+		}
+		h2::before {
+			content: "∙ ";
+		}
+		sub {
+			display: block;
+			text-align: center;
+			margin-bottom: 50px;
+		}
+		pre, code {
+			background: #2f3136;
+			padding: 4px;
+			font-size: 90%;
+			border-radius: 4px;
+		}
+		pre {
+			padding: 10px;
+			display: inline-block;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<span class="plainjs">Powered by <a href="http://vanilla-js.com" target="_blank"><img src="https://rawgit.com/aleen42/badges/master/src/plainjs.svg" alt="Plain JS"></a></span>
+	<div class="full-width">
+		<div class="container">
+			<h1>DateJS</h1>
+			<sub>is an incredibly fast, lightweight, and easy-to-use date library</sub>
+			<h2 id="installation">Installation</h2>
+			<p>
+				DateJS is so popular that it comes pre-installed with all javascript environments (including your browser)
+				and can be accessed through the <code>Date</code> constructor!
+			</p>
+			<h2 id="usage">Usage</h2>
+			<p>
+				As mentioned previously, you would just want to use the <code>Date</code> constructor.
+				<br>
+				So, you would simply do:
+			</p>
+			<pre>const date = new Date();</pre>
+			<h2 id="methods">Methods</h2>
+			<p>
+				Here are some various date formatting methods and their output.
+			</p>
+			<p class="methods">
+				<!-- Empty For JS -->
+			</p>
+			<h2 id="further-reading">Further Reading</h2>
+			<p>
+				Read more about the <code>Date</code> constructor on
+				<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr></a>.
+				<br>
+				<br>
+				<b>Disclaimer:</b> This page is a complete joke. Its only purpose is to point out that using something such as
+				<a href="https://momentjs.com" target="_blank">moment</a> is <b>usually</b> unnecessary.
+			</p>
+		</div>
+	</div>
+	<script>
+		// es5 baby
+		function set(name, value) {
+			return document.getElementsByClassName(name)[0] = value;
+		}
+		var h2s = document.getElementsByTagName('h2');
+		for (var i = 0; i < h2s.length; i++) {
+			h2s[i].onclick = function() {
+				location.hash = this.id;
+			}
+		}
+		var methods = [
+			'toLocaleTimeString',
+			'toLocaleDateString',
+			'toLocaleString',
+			'toTimeString',
+			'toDateString',
+			'toUTCString'
+		];
+		var el = document.getElementsByClassName('methods')[0];
+		(function update() {
+			var date = new Date();
+			el.innerHTML = '';
+			for (var i = 0; i < methods.length; i++) {
+				el.innerHTML +=  '<br><code><b>date.' + methods[i] + '()</b></code> :: ' + '<code>' + date[methods[i]]() + '</code>';
+			}
+
+			setTimeout(update, 1000 - (Date.now() % 1000));
+		})();
+	</script>
+</body>
+</html>
