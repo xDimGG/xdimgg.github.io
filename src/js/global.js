@@ -20,10 +20,10 @@ const reset = () => {
 	ctx.textAlign = 'right';
 	ctx.fillText(leftWins, (cvs.width / 2) - 20, size + 50);
 	ctx.textAlign = 'left';
-	ctx.fillText(rightWins, (cvs.width / 2) + 40, size + 50);
+	ctx.fillText(rightWins, (cvs.width / 2) + 20, size + 50);
 
 	for (let i = 0; i < cvs.width; i += size)
-		ctx.fillRect(cvs.width / 2, (i * 2) - (size / 2), size, size);
+		ctx.fillRect((cvs.width / 2) - (size / 2), (i * 2) - (size / 2), size, size);
 };
 
 class Base {
