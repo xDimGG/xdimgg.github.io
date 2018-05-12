@@ -127,8 +127,8 @@ const play = () => {
 			ball.yDelta = (Math.random() * 7) - 3;
 		}
 
-		const winLeft = ball.left <= 0;
-		const winRight = ball.right >= cvs.width;
+		const winLeft = ball.right >= cvs.width;
+		const winRight = ball.left <= 0;
 
 		if (winLeft || winRight) {
 			if (winLeft) leftWins++;
