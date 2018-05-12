@@ -3,34 +3,30 @@ h1 {
   margin: 0;
 }
 body {
-  background: url('https://static.dim.codes/src/img/background.png') no-repeat center center fixed;
-  -ms-background-size: cover;
-  background-size: cover;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   color: #fff;
-  font: 100px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-#particles {
-  opacity: 0.2;
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	font: 100px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .center {
+  border: 20px solid #fff;
+  padding: 20px;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
   position: fixed;
   text-align: center;
+  background: #000000;
+  /* display: none; */
+  /* opacity: 0.5; */
+}
+
+#tip {
+  top: 0;
+  right: 5px;
+  color: #000000;
+  position: fixed;
+  font-size: 12px;
 }
 
 .social {
@@ -50,4 +46,10 @@ body {
 
 .social a.bot {
   font-size: 16px;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
 }

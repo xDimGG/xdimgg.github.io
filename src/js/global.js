@@ -1,125 +1,161 @@
-(function(){
-	var center = document.getElementsByClassName('center')[0];
+const center = document.querySelector('.center');
+const cvs = document.querySelector('canvas');
+const ctx = cvs.getContext('2d');
 
-	window.onmousemove = function(me) {
-		var w = window.innerWidth;
-		var h = window.innerHeight;
-		var x = me.clientX;
-		var y = me.clientY;
+const height = 80;
+const size = 20;
 
-		center.style.transform = 'translate(-50%, -50%) rotateY(' + (w/2 - x)/20 + 'deg) rotateX(' + -(h/2 - y)/20 + 'deg)';
+let leftWins = 0;
+let rightWins = 0;
+
+const reset = () => {
+	cvs.width = innerWidth;
+	cvs.height = innerHeight;
+
+	ctx.fillRect(0, 0, cvs.width, cvs.height);
+	ctx.fillStyle = '#FFFFFF';
+	ctx.fillRect(0, 0, cvs.width, size);
+	ctx.fillRect(0, cvs.height - size, cvs.width, size);
+	ctx.font = '40px monospace';
+	ctx.textAlign = 'right';
+	ctx.fillText(leftWins, (cvs.width / 2) - 20, size + 50);
+	ctx.textAlign = 'left';
+	ctx.fillText(rightWins, (cvs.width / 2) + 40, size + 50);
+
+	for (let i = 0; i < cvs.width; i += size)
+		ctx.fillRect(cvs.width / 2, (i * 2) - (size / 2), size, size);
+};
+
+class Base {
+	get left() {
+		return this.x;
 	}
-  document.oncontextmenu = function(){
-    return false;
-  }
-  particlesJS('particles', {
-    particles: {
-      number: {
-        value: 40,
-        density: {
-          enable: true,
-          value_area: 800
-        }
-      },
-      color: {
-        value: '#ffffff'
-      },
-      shape: {
-        type: 'circle',
-        stroke: {
-          width: 1,
-          color: '#ffffff'
-        },
-        polygon: {
-          nb_sides: 4
-        },
-        image: {
-          src: 'img/github.svg',
-          width: 100,
-          height: 100
-        }
-      },
-      opacity: {
-        value: 0.5,
-        random: false,
-        anim: {
-          enable: false,
-          speed: 1,
-          opacity_min: 0.1,
-          sync: false
-        }
-      },
-      size: {
-        value: 3,
-        random: true,
-        anim: {
-          enable: false,
-          speed: 40,
-          size_min: 0.1,
-          sync: false
-        }
-      },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: '#ffffff',
-        opacity: 0.4,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 3,
-        direction: 'none',
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false,
-        attract: {
-          enable: false,
-          rotateX: 600,
-          rotateY: 1200
-        }
-      }
-    },
-    interactivity: {
-      detect_on: 'window',
-      events: {
-        onhover: {
-          enable: true,
-          mode: 'grab'
-        },
-        onclick: {
-          enable: true,
-          mode: 'push'
-        },
-        resize: true
-      },
-      modes: {
-        grab: {
-          distance: 150,
-          line_linked: {
-            opacity: 1
-          }
-        },
-        bubble: {
-          distance: 400,
-          size: 40,
-          duration: 2,
-          opacity: 8,
-          speed: 3
-        },
-        repulse: {
-          distance: 200,
-          duration: 0.4
-        },
-        push: {
-          particles_nb: 4
-        },
-        remove: {
-          particles_nb: 2
-        }
-      }
-    },
-    retina_detect: true
-  });
-}());
+
+	get right() {
+		return this.x + this.width;
+	}
+
+	get top() {
+		return this.y;
+	}
+
+	get bot() {
+		return this.y + this.height;
+	}
+}
+
+class Paddle extends Base {
+	constructor(x) {
+		super();
+		this.width = 20;
+		this.height = 80;
+
+		this.x = x;
+		this.calcY();
+	}
+
+	calcY() {
+		this.y = (cvs.height - this.height) / 2;
+	}
+
+	move(y) {
+		this.moveTo(this.y - y);
+	}
+
+	moveTo(y) {
+		this.y = Math.max(Math.min(y, cvs.height - size - this.height), 0 + size);
+	}
+}
+
+class Ball extends Base {
+	constructor() {
+		super();
+		this.x = cvs.width / 2;
+		this.y = cvs.height / 2;
+		this.speed = 7;
+		this.xDelta = Math.round(Math.random()) ? this.speed : -this.speed;
+		this.yDelta = 0;
+
+		this.width = 15;
+		this.height = 15;
+	}
+}
+
+const play = () => {
+	let ended = false;
+	const leftPaddle = new Paddle(0);
+	const rightPaddle = new Paddle(cvs.width - size);
+	const ball = new Ball();
+
+	const keys = {
+		ArrowUp: () => rightPaddle.move(2),
+		ArrowDown: () => rightPaddle.move(-2),
+	};
+
+	window.onkeydown = evt => {
+		const action = keys[evt.key];
+		if (action) {
+			if (action.pressed) return;
+			action.pressed = true;
+			const interval = setInterval(() => {
+				if (!action.pressed) return clearInterval(interval);
+				action();
+			}, 3);
+		}
+	};
+
+	window.onkeyup = evt => {
+		const action = keys[evt.key];
+		if (action) action.pressed = false;
+	};
+
+	const scoreInterval = setInterval(() => {
+		if (ended) return clearInterval(scoreInterval);
+
+		ball.x += ball.xDelta;
+		ball.y += ball.yDelta;
+
+		if (ball.top <= leftPaddle.top) leftPaddle.move(2.5);
+		if (ball.bot >= leftPaddle.bot) leftPaddle.move(-2.5);
+
+		if (ball.top <= size || ball.bot >= cvs.height - size) ball.yDelta *= -1;
+		const touchingLeft = ball.left <= leftPaddle.right && ball.top <= leftPaddle.bot && ball.bot >= leftPaddle.top && ball.xDelta === -ball.speed;
+		const touchingRight = ball.right >= rightPaddle.left && ball.top <= rightPaddle.bot && ball.bot >= rightPaddle.top && ball.xDelta === ball.speed;
+
+		if (touchingLeft || touchingRight) {
+			ball.xDelta *= -1;
+			ball.yDelta = (Math.random() * 7) - 3;
+		}
+
+		const winLeft = ball.left <= 0;
+		const winRight = ball.right >= cvs.width;
+
+		if (winLeft || winRight) {
+			if (winLeft) leftWins++;
+			else rightWins++;
+			ended = true;
+			play();
+		}
+	}, 1000 / 80);
+
+	const frame = () => {
+		if (ended) return;
+
+		reset();
+
+		ctx.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
+		ctx.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
+		ctx.fillRect(ball.x, ball.y, ball.width, ball.height);
+
+		requestAnimationFrame(frame);
+	};
+	window.onresize = () => {
+		frame();
+		rightPaddle.x = cvs.width - size;
+		rightPaddle.calcY();
+	};
+	requestAnimationFrame(frame);
+};
+
+reset();
+play();
