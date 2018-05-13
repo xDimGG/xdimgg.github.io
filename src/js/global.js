@@ -1,12 +1,15 @@
 const center = document.querySelector('.center');
 const cvs = document.querySelector('canvas');
 const ctx = cvs.getContext('2d');
+const pog = new Image();
+pog.src = 'https://cdn.discordapp.com/emojis/440658615880253440.png';
 
 const height = 80;
 const size = 20;
 
 let leftWins = 0;
 let rightWins = 0;
+let poggers = false;
 
 const reset = () => {
 	cvs.width = innerWidth;
@@ -91,8 +94,11 @@ const play = () => {
 		ArrowUp: () => rightPaddle.move(2),
 		ArrowDown: () => rightPaddle.move(-2),
 	};
+	let sequence = '';
 
 	window.onkeydown = evt => {
+		sequence += evt.key.toLowerCase();
+		if (sequence.endsWith('poggers')) poggers = !poggers;
 		const action = keys[evt.key];
 		if (action) {
 			if (action.pressed) return;
@@ -145,7 +151,12 @@ const play = () => {
 
 		ctx.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
 		ctx.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
-		ctx.fillRect(ball.x, ball.y, ball.width, ball.height);
+		if (poggers) {
+			pog.width = ball.width;
+			pog.height = ball.height;
+			ctx.drawImage(pog, ball.x, ball.y, ball.width, ball.height);
+		}
+		else ctx.fillRect(ball.x, ball.y, ball.width, ball.height);
 
 		requestAnimationFrame(frame);
 	};
