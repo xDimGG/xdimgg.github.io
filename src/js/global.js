@@ -105,7 +105,7 @@ const play = () => {
 	window.onkeydown = evt => {
 		sequence += evt.key.toLowerCase();
 		let potentialPoggers = '';
-		if (poggerChampion.some(puggers => {
+		if (Object.keys(poggerChampion).some(puggers => {
 			potentialPoggers = puggers;
 			return sequence.endsWith(puggers);
 		})){
