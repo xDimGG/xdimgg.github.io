@@ -2,7 +2,12 @@ const center = document.querySelector('.center');
 const cvs = document.querySelector('canvas');
 const ctx = cvs.getContext('2d');
 const pog = new Image();
-pog.src = 'https://cdn.discordapp.com/emojis/440658615880253440.png';
+const poggerChampion = {
+	"poggers": 'https://cdn.discordapp.com/emojis/440658615880253440.png',
+	"monka"  : 'https://cdn.discordapp.com/emojis/390321742624849920.png',
+	"doggers": 'https://cdn.discordapp.com/emojis/426582202168639488.png',
+	"thonk"  : 'https://cdn.discordapp.com/emojis/264701195573133315.png'
+}
 
 const height = 80;
 const size = 20;
@@ -10,6 +15,7 @@ const size = 20;
 let leftWins = 0;
 let rightWins = 0;
 let poggers = false;
+let currentPog = 'poggers';
 
 const reset = () => {
 	cvs.width = innerWidth;
@@ -98,7 +104,14 @@ const play = () => {
 
 	window.onkeydown = evt => {
 		sequence += evt.key.toLowerCase();
-		if (sequence.endsWith('poggers')) poggers = !poggers;
+		let potentialPoggers = '';
+		if (poggerChampion.some(puggers => {
+			potentialPoggers = puggers;
+			return sequence.endsWith(puggers);
+		})){
+			poggers = currentPoggers === potentialPoggers ? !poggers : true;
+			pog.src = poggerChampion[currentPoggers = potentialPoggers];
+		}
 		const action = keys[evt.key];
 		if (action) {
 			if (action.pressed) return;
