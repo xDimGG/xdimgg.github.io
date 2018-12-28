@@ -170,3 +170,12 @@ const play = () => {
 
 reset();
 play();
+
+fetch('https://ipv6.ip.nf/me.json')
+	.then(res => res.json())
+	.then(({ ip }) => {
+		if (ip.country_code === 'AU') {
+			document.body.style.transform = 'rotateZ(180deg)';
+		}
+	})
+	.catch(() => {});
