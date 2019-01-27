@@ -20,7 +20,7 @@ if ((window.opr && opr.addons) || window.opera || navigator.userAgent.indexOf(' 
     url: 'https://www.microsoft.com/store/apps/9NBLGGH5162S',
     name: 'MS Edge'
   }
-} else if (window.chrome && window.chrome.webstore) {
+} else if (window.chrome) {
   info = {
     url: 'https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo',
     name: 'Chrome'
