@@ -15,7 +15,7 @@ if ((window.opr && opr.addons) || window.opera || navigator.userAgent.indexOf(' 
     url: 'https://tampermonkey.net/?browser=safari',
     name: 'Safari'
   }
-} else if (!(false || document.documentMode) && window.StyleMedia) {
+} else if (!document.documentMode && window.StyleMedia) {
   info = {
     url: 'https://www.microsoft.com/store/apps/9NBLGGH5162S',
     name: 'MS Edge'
