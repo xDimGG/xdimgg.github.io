@@ -1,7 +1,7 @@
-body,
-h1 {
+body, h1, hr {
   margin: 0;
 }
+
 body {
   background: #000000;
   color: #ffffff;
@@ -9,8 +9,7 @@ body {
 }
 
 .center {
-  border: 20px solid #fff;
-  padding: 20px;
+  border: 15px solid #fff;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%,-50%);
@@ -22,31 +21,39 @@ body {
   /* opacity: 0.5; */
 }
 
+.center > * {
+  padding: 20px;
+}
+
+.center > h1 {
+  border: 15px solid #fff;
+  border-right: none;
+  border-left: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 #tip {
-  top: 0;
+  top: 1px;
   right: 5px;
   color: #000000;
   position: fixed;
   font-size: 12px;
 }
 
-.social {
-  font-size: 0;
+.social, .projects {
+  font-size: 12px;
 }
 
-.social a {
+a {
   font-size: 12px;
   color: #fff;
   text-decoration: none;
   padding: 10px;
 }
 
-.social a:hover {
+a:hover {
   text-decoration: underline;
-}
-
-.social a.bot {
-  font-size: 16px;
 }
 
 canvas {
